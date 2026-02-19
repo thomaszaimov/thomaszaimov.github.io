@@ -3,161 +3,530 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOZAÏ — Conseil en transition écologique</title>
-  <meta name="description" content="MOZAÏ accompagne les entreprises dans leur transition écologique : Fresque du Climat, Bilan Carbone®, conseil en décarbonation.">
-  <link rel="stylesheet" href="style.css">
+  <title>MOZAI — Conseil en stratégie climat</title>
+  <link rel="icon" type="image/png" href="logo-mozai.png">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #2d3436;
+      line-height: 1.7;
+      background: #ffffff;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 5%;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+    .navbar img.logo {
+      height: 45px;
+    }
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #2d3436;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: #1e7d5b;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: #1e7d5b; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links .btn-contact {
+      background: #1e7d5b; color: white;
+      padding: 10px 24px; border-radius: 25px;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .nav-links .btn-contact::after { display: none; }
+    .nav-links .btn-contact:hover {
+      background: #166346; transform: translateY(-2px);
+    }
+
+    /* Burger menu mobile */
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .burger span { width: 25px; height: 3px; background: #2d3436; border-radius: 3px; transition: 0.3s; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      background: linear-gradient(135deg, #f0faf5 0%, #e8f5ee 50%, #dff0e8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(30,125,91,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 800px; position: relative; z-index: 2; }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .hero h1 span { color: #1e7d5b; }
+    .hero p {
+      font-size: 1.25rem;
+      color: #555;
+      margin-bottom: 35px;
+      max-width: 600px;
+      margin-left: auto; margin-right: auto;
+    }
+    .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: #1e7d5b; color: white;
+      padding: 14px 35px; border-radius: 30px;
+      font-size: 1.05rem; font-weight: 600;
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: #166346; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(30,125,91,0.3); }
+    .btn-secondary {
+      background: transparent; color: #1e7d5b;
+      padding: 14px 35px; border-radius: 30px;
+      font-size: 1.05rem; font-weight: 600;
+      border: 2px solid #1e7d5b;
+      transition: all 0.3s; cursor: pointer;
+    }
+    .btn-secondary:hover { background: #1e7d5b; color: white; transform: translateY(-3px); }
+
+    /* ===== SECTIONS GENERALES ===== */
+    section { padding: 80px 5%; }
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #1a1a2e;
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #777;
+      max-width: 650px;
+      margin: 0 auto 50px;
+    }
+
+    /* ===== NOS SERVICES ===== */
+    .services { background: #ffffff; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .service-card {
+      background: #f8fdfb;
+      border: 1px solid #e0f0e8;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: #1e7d5b;
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(30,125,91,0.12);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-size: 1.3rem;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .service-card .atelier-list {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0;
+      text-align: left;
+    }
+    .service-card .atelier-list li {
+      padding: 5px 0;
+      font-size: 0.9rem;
+      color: #555;
+      border-bottom: 1px solid #e8f0ec;
+    }
+    .service-card .atelier-list li::before {
+      content: '✦ ';
+      color: #1e7d5b;
+      font-weight: bold;
+    }
+    .service-card .btn-service {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: #1e7d5b;
+      color: white;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .service-card .btn-service:hover {
+      background: #166346;
+      transform: translateY(-2px);
+    }
+
+    /* ===== POURQUOI AGIR ===== */
+    .pourquoi-agir {
+      position: relative;
+      background: #1a1a2e;
+      color: white;
+      overflow: hidden;
+    }
+    .pourquoi-agir::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('keeling-curve.png') center center / cover no-repeat;
+      opacity: 0.12;
+      z-index: 0;
+    }
+    .pourquoi-agir .content-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pourquoi-agir .section-title { color: #ffffff; }
+    .pourquoi-agir .section-subtitle { color: #aaa; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 25px 30px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s;
+    }
+    .stat-card:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #4ecdc4;
+      margin-bottom: 8px;
+    }
+    .stat-text {
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.5;
+    }
+    .stat-source {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    .pourquoi-message {
+      background: rgba(30,125,91,0.2);
+      border: 1px solid rgba(30,125,91,0.4);
+      border-radius: 16px;
+      padding: 30px 35px;
+      margin-top: 10px;
+    }
+    .pourquoi-message h3 {
+      font-size: 1.3rem;
+      color: #4ecdc4;
+      margin-bottom: 12px;
+    }
+    .pourquoi-message p {
+      color: #ddd;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ===== CLIENTS CAROUSEL ===== */
+    .clients { background: #f9fdfb; overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      animation: scroll-left 40s linear infinite;
+    }
+    .carousel-track:hover { animation-play-state: paused; }
+    .carousel-track img {
+      height: 60px;
+      margin: 0 35px;
+      filter: grayscale(80%);
+      opacity: 0.7;
+      transition: all 0.3s;
+      object-fit: contain;
+    }
+    .carousel-track img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a2e;
+      color: white;
+      text-align: center;
+      padding: 40px 5%;
+    }
+    footer p { color: #999; font-size: 0.9rem; margin-bottom: 8px; }
+    footer a { color: #4ecdc4; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        gap: 15px;
+      }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .carousel-track img { height: 40px; margin: 0 20px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ========== NAVBAR ========== -->
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="navbar__logo">MOZAÏ</a>
-      <div class="navbar__burger" onclick="this.nextElementSibling.classList.toggle('active')">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="navbar__menu">
-        <a href="index.html" class="active">Accueil</a>
-        <a href="fresque.html">Fresque du Climat</a>
-        <a href="bilan-carbone.html">Bilan Carbone®</a>
-        <a href="standards.html">Standards</a>
-        <a href="a-propos.html">À propos</a>
-        <a href="contact.html">Contact</a>
-      </div>
+    <a href="index.html">
+      <img src="logo-mozai.png" alt="MOZAI" class="logo">
+    </a>
+    <div class="burger" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="ateliers.html">Ateliers collectifs</a>
+      <a href="bilan.html">Bilan Carbone</a>
+      <a href="enseignement.html">Enseignement</a>
+      <a href="contact.html" class="btn-contact">Contact</a>
     </div>
   </nav>
 
-  <!-- ========== HERO ========== -->
+  <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class="container">
-      <h1>Accélérez votre <span>transition écologique</span></h1>
-      <p>MOZAÏ accompagne les entreprises et organisations dans la compréhension des enjeux climat et la mise en place d'actions concrètes de décarbonation.</p>
-      <div class="hero__buttons">
-        <a href="contact.html" class="btn btn--primary">Prendre contact</a>
-        <a href="fresque.html" class="btn btn--outline">Découvrir nos services</a>
+    <div class="hero-content">
+      <h1>Conseil en <span>stratégie climat</span></h1>
+      <p>Ateliers de sensibilisation, Bilan Carbone® et enseignement pour accélérer votre transition écologique.</p>
+      <div class="hero-buttons">
+        <a href="contact.html" class="btn-primary">Prendre rendez-vous</a>
+        <a href="#services" class="btn-secondary">Découvrir nos services</a>
       </div>
     </div>
   </section>
 
-  <!-- ========== SERVICES ========== -->
-  <section class="section">
-    <div class="container">
-      <h2>Nos services</h2>
-      <p class="section-subtitle">Des solutions adaptées pour comprendre, mesurer et agir face aux enjeux climatiques.</p>
-      <div class="services-grid">
+  <!-- ===== NOS SERVICES ===== -->
+  <section class="services" id="services">
+    <h2 class="section-title">Nos services</h2>
+    <p class="section-subtitle">Trois leviers complémentaires pour embarquer vos équipes et structurer votre démarche climat.</p>
 
-        <!-- Service 1 -->
-        <div class="service-card">
-          <div class="service-card__icon">🌍</div>
-          <h3>Fresque du Climat</h3>
-          <p>Atelier collaboratif de 3 heures pour comprendre les causes et conséquences du changement climatique, basé sur les rapports du GIEC.</p>
-          <a href="fresque.html" class="service-card__link">En savoir plus →</a>
-        </div>
+    <div class="services-grid">
 
-        <!-- Service 2 -->
-        <div class="service-card">
-          <div class="service-card__icon">📊</div>
-          <h3>Bilan Carbone®</h3>
-          <p>Mesure complète des émissions de gaz à effet de serre de votre organisation selon la méthodologie de l'ABC (Association pour la transition Bas Carbone).</p>
-          <a href="bilan-carbone.html" class="service-card__link">En savoir plus →</a>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="service-card">
-          <div class="service-card__icon">📋</div>
-          <h3>Standards &amp; Réglementations</h3>
-          <p>Accompagnement dans la compréhension et la mise en conformité avec les réglementations européennes : CSRD, EU Green Deal, Fit for 55.</p>
-          <a href="standards.html" class="service-card__link">En savoir plus →</a>
-        </div>
-
+      <!-- Ateliers collectifs -->
+      <div class="service-card">
+        <div class="service-icon">🧩</div>
+        <h3>Ateliers d'intelligence collective</h3>
+        <p>Sensibilisez vos collaborateurs aux enjeux climatiques grâce à des ateliers scientifiques et collaboratifs.</p>
+        <ul class="atelier-list">
+          <li>Fresque du Climat</li>
+          <li>Fresque de la Biodiversité</li>
+          <li>Fresque du Numérique</li>
+          <li>Bataille de l'IA</li>
+          <li>Fresque des Frontières Planétaires</li>
+          <li>Atelier 2 Tonnes</li>
+        </ul>
+        <a href="ateliers.html" class="btn-service">En savoir plus →</a>
       </div>
+
+      <!-- Bilan Carbone -->
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Bilan Carbone®</h3>
+        <p>Mesurez, comprenez et réduisez l'empreinte carbone de votre organisation avec la méthodologie de l'ABC.</p>
+        <ul class="atelier-list">
+          <li>Scopes 1, 2 et 3</li>
+          <li>Plan de transition</li>
+          <li>Conformité réglementaire</li>
+          <li>Accompagnement sur mesure</li>
+        </ul>
+        <a href="bilan.html" class="btn-service">En savoir plus →</a>
+      </div>
+
+      <!-- Enseignement -->
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <h3>Enseignement</h3>
+        <p>Interventions en écoles d'ingénieurs pour former la prochaine génération aux enjeux énergie-climat.</p>
+        <ul class="atelier-list">
+          <li>Cours en école d'ingénieur</li>
+          <li>Conférences & séminaires</li>
+          <li>Pédagogie active</li>
+          <li>Contenu scientifique à jour</li>
+        </ul>
+        <a href="enseignement.html" class="btn-service">En savoir plus →</a>
+      </div>
+
     </div>
   </section>
 
-  <!-- ========== CHIFFRES CLÉS ========== -->
-  <section class="section section--grey">
-    <div class="container">
-      <h2>Pourquoi agir maintenant ?</h2>
-      <p class="section-subtitle">Les données scientifiques sont claires. Le moment d'agir, c'est aujourd'hui.</p>
+  <!-- ===== POURQUOI AGIR ===== -->
+  <section class="pourquoi-agir" id="pourquoi">
+    <div class="content-wrapper">
+      <h2 class="section-title">Pourquoi agir maintenant ?</h2>
+      <p class="section-subtitle">Bien que ces enjeux soient en net recul au niveau réglementaire, l'opinion publique et les efforts nécessaires continuent de croître.</p>
+
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-card__number">+1,1°C</div>
-          <div class="stat-card__label">Réchauffement mondial depuis l'ère préindustrielle (GIEC, AR6, 2021)</div>
+          <div class="stat-number">80 %</div>
+          <div class="stat-text">des Français souhaitent que l'expertise climatique guide les choix stratégiques.</div>
+          <div class="stat-source">SDES, 2024</div>
         </div>
         <div class="stat-card">
-          <div class="stat-card__number">-55%</div>
-          <div class="stat-card__label">Objectif de réduction des émissions de l'UE d'ici 2030 (Fit for 55)</div>
+          <div class="stat-number">9 / 10</div>
+          <div class="stat-text">Français se disent inquiets du changement climatique, ce qui pourrait influencer leurs choix de consommation.</div>
+          <div class="stat-source">Ipsos</div>
         </div>
         <div class="stat-card">
-          <div class="stat-card__number">1 500+</div>
-          <div class="stat-card__label">Animateurs Fresque du Climat formés en France</div>
+          <div class="stat-number">2050</div>
+          <div class="stat-text">France Assureurs alerte sur le risque de non-assurabilité d'ici 2050 sans efforts d'atténuation et d'adaptation.</div>
+          <div class="stat-source">France Assureurs</div>
         </div>
         <div class="stat-card">
-          <div class="stat-card__number">2025</div>
-          <div class="stat-card__label">Entrée en vigueur des premiers rapports CSRD pour les grandes entreprises</div>
+          <div class="stat-number">– 55 %</div>
+          <div class="stat-text">L'objectif de baisse d'émissions de l'UE d'ici à 2030 est toujours en vigueur.</div>
+          <div class="stat-source">Union Européenne</div>
         </div>
+      </div>
+
+      <div class="pourquoi-message">
+        <h3>📉 Le bon moment pour se lancer</h3>
+        <p>La période de ralentissement réglementaire actuelle représente une opportunité : la demande pour des services RSE étant plus faible, c'est le bon moment pour vous lancer à un coût maîtrisé et sans pression. Cela vous permet de renforcer vos compétences internes, structurer vos données carbone et avancer sereinement, à votre rythme, sans exigence de résultats immédiats.</p>
       </div>
     </div>
   </section>
+  <!-- ===== CLIENTS ===== -->
+  <section class="clients" id="clients">
+    <h2 class="section-title">Ils nous font confiance</h2>
+    <p class="section-subtitle">Entreprises, collectivités et grandes écoles accompagnées par MOZAI.</p>
 
-  <!-- ========== RÉFÉRENCES ========== -->
-  <section class="section">
-    <div class="container">
-      <h2>Ils nous font confiance</h2>
-      <p class="section-subtitle">Entreprises et organisations accompagnées dans leur transition.</p>
-      <div class="logos-grid">
-        <div class="logo-placeholder">Client 1</div>
-        <div class="logo-placeholder">Client 2</div>
-        <div class="logo-placeholder">Client 3</div>
-        <div class="logo-placeholder">Client 4</div>
-        <div class="logo-placeholder">Client 5</div>
-        <div class="logo-placeholder">Client 6</div>
-      </div>
+    <div class="carousel-track">
+      <!-- Première série -->
+      <img src="client1.png" alt="Client 1">
+      <img src="client2.png" alt="Client 2">
+      <img src="client3.png" alt="Client 3">
+      <img src="client4.png" alt="Client 4">
+      <img src="client5.png" alt="Client 5">
+      <img src="client6.png" alt="Client 6">
+      <img src="client7.png" alt="Client 7">
+      <img src="client8.png" alt="Client 8">
+      <img src="client9.png" alt="Client 9">
+      <img src="client10.png" alt="Client 10">
+      <img src="client11.png" alt="Client 11">
+      <img src="client12.png" alt="Client 12">
+      <img src="client13.png" alt="Client 13">
+      <img src="client14.png" alt="Client 14">
+      <img src="client15.png" alt="Client 15">
+      <img src="client16.png" alt="Client 16">
+      <img src="client17.png" alt="Client 17">
+      <img src="client18.png" alt="Client 18">
+      <img src="client19.png" alt="Client 19">
+      <img src="client20.png" alt="Client 20">
+      <img src="client21.png" alt="Client 21">
+      <img src="client22.png" alt="Client 22">
+      <!-- Doublé pour boucle infinie -->
+      <img src="client1.png" alt="Client 1">
+      <img src="client2.png" alt="Client 2">
+      <img src="client3.png" alt="Client 3">
+      <img src="client4.png" alt="Client 4">
+      <img src="client5.png" alt="Client 5">
+      <img src="client6.png" alt="Client 6">
+      <img src="client7.png" alt="Client 7">
+      <img src="client8.png" alt="Client 8">
+      <img src="client9.png" alt="Client 9">
+      <img src="client10.png" alt="Client 10">
+      <img src="client11.png" alt="Client 11">
+      <img src="client12.png" alt="Client 12">
+      <img src="client13.png" alt="Client 13">
+      <img src="client14.png" alt="Client 14">
+      <img src="client15.png" alt="Client 15">
+      <img src="client16.png" alt="Client 16">
+      <img src="client17.png" alt="Client 17">
+      <img src="client18.png" alt="Client 18">
+      <img src="client19.png" alt="Client 19">
+      <img src="client20.png" alt="Client 20">
+      <img src="client21.png" alt="Client 21">
+      <img src="client22.png" alt="Client 22">
     </div>
   </section>
 
-  <!-- ========== CTA ========== -->
-  <section class="section section--grey" style="text-align:center;">
-    <div class="container">
-      <h2>Prêt à passer à l'action ?</h2>
-      <p class="section-subtitle">Contactez-nous pour un premier échange gratuit et sans engagement.</p>
-      <a href="contact.html" class="btn btn--primary">Prendre contact</a>
-    </div>
-  </section>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <div class="footer__brand">MOZAÏ</div>
-          <p>Conseil et formation pour la transition écologique des entreprises.</p>
-        </div>
-        <div>
-          <h4>Navigation</h4>
-          <ul class="footer__links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="fresque.html">Fresque du Climat</a></li>
-            <li><a href="bilan-carbone.html">Bilan Carbone®</a></li>
-            <li><a href="standards.html">Standards</a></li>
-            <li><a href="a-propos.html">À propos</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <ul class="footer__links">
-            <li>✉ thomas.zaimov@gmail.com</li>
-            <li>📞 +33 7 62 60 51 63</li>
-            <li><a href="contact.html">Formulaire de contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <p>&copy; 2024 MOZAÏ — Tous droits réservés.</p>
-      </div>
-    </div>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p><strong>MOZAI</strong> — Conseil en stratégie climat</p>
+    <p>Thomas Zaimov · <a href="mailto:thomas.zaimov@mozai.fr">thomas.zaimov@mozai.fr</a></p>
+    <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">© 2025 MOZAI. Tous droits réservés.</p>
   </footer>
 
 </body>
