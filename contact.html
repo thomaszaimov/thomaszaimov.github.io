@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — MOZAÏ</title>
+  <meta name="description" content="Contactez MOZAÏ pour organiser un atelier Fresque du Climat, réaliser votre Bilan Carbone® ou discuter de votre stratégie de transition écologique.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== STYLES SPÉCIFIQUES CONTACT ===== */
+
+    .contact-hero {
+      background: linear-gradient(135deg, #2d1b4e 0%, #5b2d8e 50%, #8e44ad 100%);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    .contact-hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .contact-hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: 0 auto;
+      opacity: 0.92;
+    }
+
+    /* --- Layout principal --- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* --- Infos de contact --- */
+    .contact-infos h2 {
+      font-size: 1.8rem;
+      color: #2d1b4e;
+      margin-bottom: 24px;
+    }
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: #f8f6fc;
+      border-radius: 14px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .contact-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(93, 45, 142, 0.1);
+    }
+    .contact-card .icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .contact-card h3 {
+      font-size: 1.05rem;
+      color: #2d1b4e;
+      margin-bottom: 4px;
+    }
+    .contact-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .contact-card a {
+      color: #5b2d8e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Réseaux sociaux --- */
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: #2d1b4e;
+      color: #fff;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .social-link:hover {
+      background: #5b2d8e;
+      transform: translateY(-3px);
+    }
+
+    /* --- Formulaire --- */
+    .contact-form-wrap h2 {
+      font-size: 1.8rem;
+      color: #2d1b4e;
+      margin-bottom: 24px;
+    }
+    .contact-form {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #2d1b4e;
+      font-size: 0.92rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e8e4ef;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: #faf9fc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #5b2d8e;
+      box-shadow: 0 0 0 3px rgba(91, 45, 142, 0.15);
+      background: #fff;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235b2d8e' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #5b2d8e, #8e44ad);
+      color: #fff;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s, box-shadow 0.3s;
+      font-family: inherit;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(91, 45, 142, 0.35);
+    }
+
+    /* --- Message de confirmation --- */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success .checkmark {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .form-success h3 {
+      color: #2d1b4e;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .form-success p {
+      color: #555;
+    }
+
+    /* --- FAQ --- */
+    .faq-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .faq-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #2d1b4e;
+      margin-bottom: 40px;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e8e4ef;
+      padding: 20px 0;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      color: #2d1b4e;
+      font-size: 1.05rem;
+    }
+    .faq-question:hover {
+      color: #5b2d8e;
+    }
+    .faq-toggle {
+      font-size: 1.4rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-top: 12px;
+    }
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    /* --- Map placeholder --- */
+    .map-section {
+      background: #f0ecf5;
+      padding: 0;
+    }
+    .map-placeholder {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .map-box {
+      background: #e0d8ed;
+      border-radius: 20px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #5b2d8e;
+    }
+    .map-box .icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+    .map-box p {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .map-box span {
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* --- CTA final --- */
+    .contact-cta-final {
+      text-align: center;
+      background: linear-gradient(135deg, #2d1b4e, #5b2d8e);
+      color: #fff;
+      padding: 60px 20px;
+    }
+    .contact-cta-final h2 {
+      color: #fff;
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .contact-cta-final p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 550px;
+      margin: 0 auto 30px;
+    }
+    .contact-cta-final .cta-btn {
+      display: inline-block;
+      background: #f4a261;
+      color: #2d1b4e;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .contact-cta-final .cta-btn:hover {
+      background: #e76f51;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* --- Nav --- */
+    .nav-simple {
+      background: #2d1b4e;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .nav-simple a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .nav-simple .brand {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    .nav-links a:hover {
+      color: #f4a261;
+    }
+
+    @media (max-width: 768px) {
+      .contact-hero h1 { font-size: 2rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 30px; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { gap: 12px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav-simple">
+    <a href="index.html" class="brand">MOZAÏ</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="fresque.html">Fresque</a>
+      <a href="bilan-carbone.html">Bilan Carbone®</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="contact-hero">
+    <h1>💬 Parlons de votre projet</h1>
+    <p>Un premier échange gratuit et sans engagement pour comprendre vos besoins et vous proposer la meilleure solution.</p>
+  </section>
+
+  <!-- ===== LAYOUT PRINCIPAL ===== -->
+  <section class="contact-layout">
+
+    <!-- INFOS -->
+    <div class="contact-infos">
+      <h2>Nos coordonnées</h2>
+
+      <div class="contact-card">
+        <div class="icon">📧</div>
+        <div>
+          <h3>Email</h3>
+          <p><a href="mailto:contact@mozai.fr">contact@mozai.fr</a></p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">📞</div>
+        <div>
+          <h3>Téléphone</h3>
+          <p><a href="tel:+33600000000">06 00 00 00 00</a></p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">📍</div>
+        <div>
+          <h3>Localisation</h3>
+          <p>Paris, France<br><span style="color:#888; font-size:0.85rem;">Interventions partout en France</span></p>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="icon">⏰</div>
+        <div>
+          <h3>Disponibilité</h3>
+          <p>Lundi — Vendredi<br>9h00 — 18h00</p>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="#" class="social-link" title="LinkedIn">in</a>
+        <a href="#" class="social-link" title="Twitter / X">𝕏</a>
+      </div>
+    </div>
+
+    <!-- FORMULAIRE -->
+    <div class="contact-form-wrap">
+      <h2>Envoyez-nous un message</h2>
+
+      <div class="contact-form" id="contactForm">
+        <form action="https://formsubmit.co/contact@mozai.fr" method="POST">
+          
+          <!-- Anti-spam -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://thomaszaimov.github.io/contact.html?sent=true">
+          <input type="hidden" name="_subject" value="Nouveau message depuis mozai.fr">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prenom">Prénom *</label>
+              <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="votre@email.com">
+            </div>
+            <div class="form-group">
+              <label for="telephone">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone" placeholder="06 00 00 00 00">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="entreprise">Entreprise</label>
+            <input type="text" id="entreprise" name="entreprise" placeholder="Nom de votre organisation">
+          </div>
+
+          <div class="form-group">
+            <label for="sujet">Sujet *</label>
+            <select id="sujet" name="sujet" required>
+              <option value="" disabled selected>Choisissez un sujet</option>
+              <option value="Fresque du Climat">Fresque du Climat</option>
+              <option value="Bilan Carbone">Bilan Carbone®</option>
+              <option value="Stratégie RSE">Stratégie RSE / Conseil</option>
+              <option value="Autre">Autre demande</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Décrivez votre projet, le nombre de participants, les dates souhaitées..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Envoyer le message →</button>
+        </form>
+      </div>
+
+      <!-- Confirmation -->
+      <div class="form-success" id="formSuccess">
+        <span class="checkmark">✅</span>
+        <h3>Message envoyé !</h3>
+        <p>Nous vous répondrons sous 24 à 48h.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-section">
+    <h2>Questions fréquentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Combien coûte un atelier Fresque du Climat ?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Le tarif dépend du nombre de participants, du lieu et du format choisi. Contactez-nous pour un devis personnalisé et gratuit.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Combien de temps dure un Bilan Carbone® ?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        En moyenne, la réalisation complète d'un Bilan Carbone® prend entre 2 et 4 mois, selon la taille de l'organisation et la disponibilité des données.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Intervenez-vous partout en France ?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Oui ! Nous intervenons en présentiel partout en France et proposons également des formats en distanciel.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Le premier échange est-il vraiment gratuit ?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Absolument. Le premier appel de 30 minutes est gratuit et sans engagement. Il nous permet de comprendre vos besoins et de vous orienter vers la meilleure solution.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span>Est-ce que le Bilan Carbone® est obligatoire ?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Le BEGES (Bilan d'Émissions de Gaz à Effet de Serre) est obligatoire pour les entreprises de plus de 500 salariés, les établissements publics de plus de 250 agents et les collectivités de plus de 50 000 habitants. Mais réaliser un Bilan Carbone® est pertinent pour toute organisation, quelle que soit sa taille.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ZONE CARTE ===== -->
+  <section class="map-section">
+    <div class="map-placeholder">
+      <div class="map-box">
+        <div class="icon">🗺️</div>
+        <p>Basés à Paris</p>
+        <span>Interventions dans toute la France</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="contact-cta-final">
+    <h2>Préférez-vous un appel ?</h2>
+    <p>Réservez un créneau de 30 minutes pour discuter de votre projet de vive voix.</p>
+    <a href="tel:+33600000000" class="cta-btn">Appeler maintenant →</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background: #111; color: #aaa; text-align: center; padding: 30px 20px; font-size: 0.9rem;">
+    <p>© 2025 MOZAÏ — Conseil en transition écologique</p>
+    <p style="margin-top: 8px;">
+      <a href="index.html" style="color: #f4a261; text-decoration: none;">Accueil</a> · 
+      <a href="fresque.html" style="color: #f4a261; text-decoration: none;">Fresque</a> · 
+      <a href="bilan-carbone.html" style="color: #f4a261; text-decoration: none;">Bilan Carbone®</a> · 
+      <a href="contact.html" style="color: #f4a261; text-decoration: none;">Contact</a>
+    </p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // FAQ toggle
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      item.classList.toggle('active');
+    }
+
+    // Afficher confirmation si retour de FormSubmit
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('sent') === 'true') {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
