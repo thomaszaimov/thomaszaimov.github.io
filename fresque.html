@@ -6,187 +6,432 @@
   <title>Fresque du Climat — MOZAÏ</title>
   <meta name="description" content="Atelier Fresque du Climat animé par MOZAÏ : comprendre les enjeux climatiques en 3 heures grâce à un jeu collaboratif basé sur les rapports du GIEC.">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== STYLES SPÉCIFIQUES FRESQUE ===== */
+
+    .fresque-hero {
+      background: linear-gradient(135deg, #1a3c34 0%, #2d6a4f 50%, #40916c 100%);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    .fresque-hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .fresque-hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.92;
+    }
+    .fresque-hero .cta-btn {
+      display: inline-block;
+      background: #f4a261;
+      color: #1a3c34;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .fresque-hero .cta-btn:hover {
+      background: #e76f51;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* --- Chiffres clés --- */
+    .chiffres {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      max-width: 900px;
+      margin: -40px auto 0;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .chiffre-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .chiffre-card .number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #2d6a4f;
+      display: block;
+    }
+    .chiffre-card .label {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 6px;
+    }
+
+    /* --- Section générique --- */
+    .fresque-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .fresque-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #1a3c34;
+      margin-bottom: 12px;
+    }
+    .fresque-section .subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    /* --- 3 piliers --- */
+    .piliers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .pilier-card {
+      background: #f0faf4;
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .pilier-card:hover {
+      border-color: #2d6a4f;
+      transform: translateY(-4px);
+    }
+    .pilier-card .icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .pilier-card h3 {
+      font-size: 1.3rem;
+      color: #1a3c34;
+      margin-bottom: 12px;
+    }
+    .pilier-card p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* --- En pratique --- */
+    .pratique-bg {
+      background: #1a3c34;
+      color: #fff;
+    }
+    .pratique-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    .pratique-card {
+      text-align: center;
+      padding: 20px;
+    }
+    .pratique-card .icon {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+    .pratique-card .big {
+      font-size: 1.8rem;
+      font-weight: 800;
+      display: block;
+      color: #f4a261;
+    }
+    .pratique-card .desc {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-top: 6px;
+    }
+    .pratique-bg h2 {
+      color: #fff;
+    }
+    .pratique-bg .subtitle {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* --- Citation --- */
+    .citation-block {
+      background: linear-gradient(135deg, #f0faf4, #e8f5e9);
+      border-left: 6px solid #2d6a4f;
+      border-radius: 12px;
+      padding: 40px 36px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .citation-block blockquote {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #333;
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+    .citation-block .author {
+      font-weight: 700;
+      color: #2d6a4f;
+    }
+    .citation-block .role {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* --- Pourquoi MOZAÏ --- */
+    .mozai-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .mozai-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+    .mozai-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+    }
+    .mozai-card h3 {
+      color: #1a3c34;
+      margin-bottom: 10px;
+    }
+    .mozai-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* --- CTA final --- */
+    .cta-final {
+      text-align: center;
+      background: linear-gradient(135deg, #2d6a4f, #40916c);
+      color: #fff;
+      padding: 60px 20px;
+    }
+    .cta-final h2 {
+      color: #fff;
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .cta-final p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+    .cta-final .cta-btn {
+      display: inline-block;
+      background: #f4a261;
+      color: #1a3c34;
+      padding: 16px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .cta-final .cta-btn:hover {
+      background: #e76f51;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* --- Nav simple --- */
+    .nav-simple {
+      background: #1a3c34;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+    .nav-simple a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .nav-simple .brand {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+    .nav-links a:hover {
+      color: #f4a261;
+    }
+
+    @media (max-width: 600px) {
+      .fresque-hero h1 { font-size: 2rem; }
+      .chiffre-card .number { font-size: 1.6rem; }
+      .nav-links { gap: 12px; font-size: 0.85rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="navbar__logo">MOZAÏ</a>
-      <div class="navbar__burger" onclick="this.nextElementSibling.classList.toggle('active')">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="navbar__menu">
-        <a href="index.html">Accueil</a>
-        <a href="fresque.html" class="active">Fresque du Climat</a>
-        <a href="bilan-carbone.html">Bilan Carbone®</a>
-        <a href="standards.html">Standards</a>
-        <a href="a-propos.html">À propos</a>
-        <a href="contact.html">Contact</a>
-      </div>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav-simple">
+    <a href="index.html" class="brand">MOZAÏ</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="fresque.html">Fresque</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
-  <!-- ========== HERO PAGE ========== -->
-  <section class="hero hero--small">
-    <div class="container">
-      <h1>La Fresque du Climat</h1>
-      <p>Un atelier scientifique, collaboratif et ludique pour comprendre le changement climatique.</p>
-    </div>
+  <!-- ===== HERO ===== -->
+  <section class="fresque-hero">
+    <h1>🌍 La Fresque du Climat</h1>
+    <p>En 3 heures, comprenez les enjeux climatiques pour collectivement passer à l'action.</p>
+    <a href="contact.html" class="cta-btn">Organiser un atelier →</a>
   </section>
 
-  <!-- ========== QU'EST-CE QUE C'EST ========== -->
-  <section class="section">
-    <div class="container">
-      <h2>Qu'est-ce que la Fresque du Climat ?</h2>
-      <div class="content-block">
-        <p>La <strong>Fresque du Climat</strong> est un atelier collaboratif créé par <strong>Cédric Ringenbach</strong> en 2018. Il permet à un groupe de 4 à 8 participants de comprendre les <strong>causes et conséquences du changement climatique</strong> en s'appuyant sur les données du <strong>GIEC</strong> (Groupe d'experts intergouvernemental sur l'évolution du climat).</p>
-        <p>En 3 heures, les participants reconstituent les liens de cause à effet entre les activités humaines et les dérèglements climatiques, à l'aide de <strong>42 cartes</strong> issues des rapports scientifiques.</p>
-        <p>L'atelier est reconnu mondialement : plus de <strong>1,5 million de personnes</strong> y ont participé dans plus de 130 pays (source : <a href="https://fresqueduclimat.org" target="_blank" style="color:var(--magenta);">fresqueduclimat.org</a>).</p>
+  <!-- ===== CHIFFRES CLÉS ===== -->
+  <div class="chiffres">
+    <div class="chiffre-card">
+      <span class="number">2,3 M</span>
+      <span class="label">participant·es dans le monde</span>
+    </div>
+    <div class="chiffre-card">
+      <span class="number">168</span>
+      <span class="label">pays touchés</span>
+    </div>
+    <div class="chiffre-card">
+      <span class="number">100 000+</span>
+      <span class="label">animateur·ices formé·es</span>
+    </div>
+    <div class="chiffre-card">
+      <span class="number">45+</span>
+      <span class="label">langues disponibles</span>
+    </div>
+  </div>
+
+  <!-- ===== POUR AGIR IL FAUT COMPRENDRE ===== -->
+  <section class="fresque-section">
+    <h2>Pour agir, il faut comprendre</h2>
+    <p class="subtitle">Depuis 2018, La Fresque du Climat permet aux individus et organisations de s'approprier le défi de l'urgence climatique.</p>
+
+    <div class="piliers">
+      <div class="pilier-card">
+        <div class="icon">🔬</div>
+        <h3>Scientifique</h3>
+        <p>L'atelier est fondé sur les données issues des rapports du <strong>GIEC</strong> (Groupe d'experts intergouvernemental sur l'évolution du climat), dont les recommandations orientent les décisions politiques et économiques mondiales.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="icon">🤝</div>
+        <h3>Coopératif</h3>
+        <p>Son approche ludique et collaborative permet de s'approprier le sujet des changements climatiques. Les participant·es relient les causes et les effets <strong>en intelligence collective</strong>, sans descente verticale du savoir.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="icon">🚀</div>
+        <h3>Mobilisateur</h3>
+        <p>Sans culpabiliser, La Fresque engage les individus dans un échange constructif. À l'issue de l'atelier, les participant·es sont <strong>motivé·es et outillé·es</strong> pour agir à leur échelle.</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== DÉROULEMENT ========== -->
-  <section class="section section--grey">
-    <div class="container">
-      <h2>Comment se déroule l'atelier ?</h2>
-      <p class="section-subtitle">Un format éprouvé en 4 phases sur environ 3 heures.</p>
-      <div class="steps-grid">
+  <!-- ===== EN PRATIQUE ===== -->
+  <section class="pratique-bg">
+    <div class="fresque-section">
+      <h2>En pratique</h2>
+      <p class="subtitle">Un atelier d'intelligence collective où les participant·es reconstituent les liens de cause à effet des changements climatiques.</p>
 
-        <div class="step-card">
-          <div class="step-card__number">1</div>
-          <h3>Réflexion</h3>
-          <p>Les participants découvrent les 42 cartes par lots et les positionnent pour reconstituer les liens de cause à effet du système climatique.</p>
+      <div class="pratique-grid">
+        <div class="pratique-card">
+          <div class="icon">⏱️</div>
+          <span class="big">3 heures</span>
+          <span class="desc">pour comprendre les enjeux climatiques</span>
         </div>
-
-        <div class="step-card">
-          <div class="step-card__number">2</div>
-          <h3>Créativité</h3>
-          <p>Le groupe illustre et décore sa fresque pour se l'approprier, ajouter des titres et rendre le résultat visuel et mémorable.</p>
+        <div class="pratique-card">
+          <div class="icon">🃏</div>
+          <span class="big">42 cartes</span>
+          <span class="desc">à jouer en présentiel ou en ligne</span>
         </div>
-
-        <div class="step-card">
-          <div class="step-card__number">3</div>
-          <h3>Restitution</h3>
-          <p>Chaque groupe présente sa fresque, explique les liens identifiés et partage ses découvertes avec les autres participants.</p>
+        <div class="pratique-card">
+          <div class="icon">👤</div>
+          <span class="big">1 animateur</span>
+          <span class="desc">pour 4 à 14 participant·es</span>
         </div>
-
-        <div class="step-card">
-          <div class="step-card__number">4</div>
-          <h3>Débrief</h3>
-          <p>Un moment d'échange sur les émotions ressenties, suivi d'une discussion sur les actions individuelles et collectives possibles.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== POURQUOI EN ENTREPRISE ========== -->
-  <section class="section">
-    <div class="container">
-      <h2>Pourquoi organiser une Fresque en entreprise ?</h2>
-      <div class="benefits-grid">
-
-        <div class="benefit-card">
-          <div class="benefit-card__icon">🎯</div>
-          <h3>Socle commun de connaissances</h3>
-          <p>Tous les collaborateurs partagent la même compréhension scientifique des enjeux climat, facilitant les décisions stratégiques.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-card__icon">🤝</div>
-          <h3>Cohésion d'équipe</h3>
-          <p>L'atelier favorise l'intelligence collective, le dialogue et la collaboration entre services et niveaux hiérarchiques.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-card__icon">🚀</div>
-          <h3>Passage à l'action</h3>
-          <p>Le débrief permet d'amorcer une dynamique de changement concrète au sein de l'organisation.</p>
-        </div>
-
-        <div class="benefit-card">
-          <div class="benefit-card__icon">📜</div>
-          <h3>Réponse réglementaire</h3>
-          <p>La sensibilisation aux enjeux climat répond aux exigences croissantes de la CSRD et des normes ESG.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== INFOS PRATIQUES ========== -->
-  <section class="section section--grey">
-    <div class="container">
-      <h2>Informations pratiques</h2>
-      <div class="info-table">
-        <div class="info-row">
-          <div class="info-row__label">⏱ Durée</div>
-          <div class="info-row__value">3 heures (3h30 recommandé avec le débrief complet)</div>
-        </div>
-        <div class="info-row">
-          <div class="info-row__label">👥 Participants</div>
-          <div class="info-row__value">4 à 8 personnes par table (plusieurs tables possibles)</div>
-        </div>
-        <div class="info-row">
-          <div class="info-row__label">📍 Lieu</div>
-          <div class="info-row__value">Dans vos locaux ou dans un lieu de votre choix</div>
-        </div>
-        <div class="info-row">
-          <div class="info-row__label">🎓 Animateur</div>
-          <div class="info-row__value">Thomas Zaimov, animateur certifié Fresque du Climat</div>
-        </div>
-        <div class="info-row">
-          <div class="info-row__label">🌐 Format</div>
-          <div class="info-row__value">Présentiel ou distanciel (via Mural/Klaxoon)</div>
+        <div class="pratique-card">
+          <div class="icon">🎯</div>
+          <span class="big">Tout public</span>
+          <span class="desc">versions junior, simplifiée et adulte</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== CTA ========== -->
-  <section class="section" style="text-align:center;">
-    <div class="container">
-      <h2>Organisez une Fresque pour votre équipe</h2>
-      <p class="section-subtitle">Contactez-nous pour planifier un atelier adapté à votre organisation.</p>
-      <a href="contact.html" class="btn btn--primary">Demander un devis</a>
+  <!-- ===== CITATION ===== -->
+  <section class="fresque-section">
+    <div class="citation-block">
+      <blockquote>
+        « Le réchauffement climatique, comment ça marche ? Première option : lire un rapport du GIEC. Résultat assuré, mais 2 000 pages à parcourir ! Deuxième option : jouer à La Fresque du Climat. L'essayer, c'est l'approuver ! »
+      </blockquote>
+      <span class="author">Jean-Marc Jancovici</span><br>
+      <span class="role">Expert auprès du Haut Conseil pour le Climat</span>
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-        <div>
-          <div class="footer__brand">MOZAÏ</div>
-          <p>Conseil et formation pour la transition écologique des entreprises.</p>
-        </div>
-        <div>
-          <h4>Navigation</h4>
-          <ul class="footer__links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="fresque.html">Fresque du Climat</a></li>
-            <li><a href="bilan-carbone.html">Bilan Carbone®</a></li>
-            <li><a href="standards.html">Standards</a></li>
-            <li><a href="a-propos.html">À propos</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <ul class="footer__links">
-            <li>✉ thomas.zaimov@gmail.com</li>
-            <li>📞 +33 7 62 60 51 63</li>
-            <li><a href="contact.html">Formulaire de contact</a></li>
-          </ul>
-        </div>
+  <!-- ===== POURQUOI MOZAÏ ===== -->
+  <section class="fresque-section" style="background: #fafafa;">
+    <h2>Pourquoi choisir MOZAÏ ?</h2>
+    <p class="subtitle">Thomas Zaimov, animateur certifié de La Fresque du Climat, accompagne votre équipe dans cette expérience transformatrice.</p>
+
+    <div class="mozai-grid">
+      <div class="mozai-card">
+        <div class="icon">✅</div>
+        <h3>Animateur certifié</h3>
+        <p>Formé et accrédité par l'association La Fresque du Climat pour garantir la qualité et la rigueur scientifique de chaque atelier.</p>
       </div>
-      <div class="footer__bottom">
-        <p>&copy; 2024 MOZAÏ — Tous droits réservés.</p>
+      <div class="mozai-card">
+        <div class="icon">🏢</div>
+        <h3>Adapté à l'entreprise</h3>
+        <p>Ateliers sur-mesure intégrés à vos séminaires, journées RSE ou programmes de sensibilisation interne.</p>
+      </div>
+      <div class="mozai-card">
+        <div class="icon">📍</div>
+        <h3>Présentiel ou distanciel</h3>
+        <p>Intervention dans vos locaux partout en France, ou animation en ligne pour vos équipes à distance.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="cta-final">
+    <h2>Prêt à sensibiliser vos équipes ?</h2>
+    <p>Organisez un atelier Fresque du Climat dans votre entreprise. Contactez-nous pour un devis personnalisé.</p>
+    <a href="contact.html" class="cta-btn">Demander un devis →</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="background: #111; color: #aaa; text-align: center; padding: 30px 20px; font-size: 0.9rem;">
+    <p>© 2025 MOZAÏ — Conseil en transition écologique</p>
+    <p style="margin-top: 8px;">
+      <a href="index.html" style="color: #f4a261; text-decoration: none;">Accueil</a> · 
+      <a href="fresque.html" style="color: #f4a261; text-decoration: none;">Fresque</a> · 
+      <a href="contact.html" style="color: #f4a261; text-decoration: none;">Contact</a>
+    </p>
   </footer>
 
 </body>
